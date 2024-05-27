@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Tooltip from "./Tooltip";
 
 function App() {
+  const [position, setPosition] = useState("top");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <div className="buttonFlex">
+        <button onClick={() => setPosition("top")}> TOP</button>
+        <button onClick={() => setPosition("bottom")}>BOTTOM</button>
+        <button onClick={() => setPosition("right")}>RIGHT</button>
+        <button onClick={() => setPosition("left")}>LEFT</button>
+      </div>
+      <div style={{ padding: "50px" }} className="testTooltip">
+        <Tooltip
+          position={position}
+          content={`Thanks for hovering! I'm a tooltip on ${position}`}
         >
-          Learn React
-        </a>
-      </header>
+          <button>Hover me ({position})</button>
+        </Tooltip>
+      </div>
     </div>
   );
 }
